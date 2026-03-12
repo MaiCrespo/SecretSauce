@@ -1,24 +1,24 @@
 import { useState, useEffect } from "react";
 import { Search, Trash2, Building2, Briefcase } from "lucide-react";
-import { storage } from "../utils/storage";
-import { Input } from "../components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
-import { Badge } from "../components/ui/badge";
-import { Button } from "../components/ui/button";
-import { StarRating } from "../components/star-rating";
+import { storage } from "../utils/storage.js";
+import { Input } from "../components/ui/input.js";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card.js";
+import { Badge } from "../components/ui/badge.js";
+import { Button } from "../components/ui/button.js";
+import { StarRating } from "../components/star-rating.js";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../components/ui/accordion";
+} from "../components/ui/accordion.js";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../components/ui/select";
+} from "../components/ui/select.js";
 
 export function Home() {
   const [questions, setQuestions] = useState([]);
@@ -42,11 +42,9 @@ export function Home() {
     }
   };
 
-  // Get unique companies and roles
   const companies = Array.from(new Set(questions.map((q) => q.company).filter(Boolean)));
   const roles = Array.from(new Set(questions.map((q) => q.role)));
 
-  // Filter questions
   const filteredQuestions = questions.filter((q) => {
     const matchesSearch =
       q.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -65,7 +63,6 @@ export function Home() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Hero Section */}
       <div className="text-center mb-8 max-w-3xl mx-auto">
         <h2 className="text-4xl font-bold text-gray-900 mb-3">
           Stop Guessing. Start Knowing.
@@ -78,7 +75,6 @@ export function Home() {
         </p>
       </div>
 
-      {/* Filters */}
       <Card className="mb-6">
         <CardContent className="pt-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -133,14 +129,11 @@ export function Home() {
         </CardContent>
       </Card>
 
-      {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">
-                {filteredQuestions.length}
-              </div>
+              <div className="text-3xl font-bold text-blue-600">{filteredQuestions.length}</div>
               <div className="text-sm text-gray-600">Questions</div>
             </div>
           </CardContent>
@@ -148,9 +141,7 @@ export function Home() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-600">
-                {companies.length}
-              </div>
+              <div className="text-3xl font-bold text-green-600">{companies.length}</div>
               <div className="text-sm text-gray-600">Companies</div>
             </div>
           </CardContent>
@@ -158,16 +149,13 @@ export function Home() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600">
-                {roles.length}
-              </div>
+              <div className="text-3xl font-bold text-purple-600">{roles.length}</div>
               <div className="text-sm text-gray-600">Roles</div>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Questions List */}
       <div className="space-y-4">
         {filteredQuestions.length === 0 ? (
           <Card>
@@ -220,20 +208,12 @@ export function Home() {
                     <AccordionContent>
                       <div className="space-y-4 pt-2">
                         <div>
-                          <h4 className="font-medium text-sm text-gray-700 mb-2">
-                            Answer:
-                          </h4>
-                          <p className="text-sm text-gray-600 whitespace-pre-wrap">
-                            {question.answer}
-                          </p>
+                          <h4 className="font-medium text-sm text-gray-700 mb-2">Answer:</h4>
+                          <p className="text-sm text-gray-600 whitespace-pre-wrap">{question.answer}</p>
                         </div>
                         <div>
-                          <h4 className="font-medium text-sm text-gray-700 mb-2">
-                            Tips & Tricks:
-                          </h4>
-                          <p className="text-sm text-gray-600 whitespace-pre-wrap">
-                            {question.tips}
-                          </p>
+                          <h4 className="font-medium text-sm text-gray-700 mb-2">Tips & Tricks:</h4>
+                          <p className="text-sm text-gray-600 whitespace-pre-wrap">{question.tips}</p>
                         </div>
                       </div>
                     </AccordionContent>

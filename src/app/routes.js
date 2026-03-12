@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router";
-import { Root } from "./pages/root";
-import { Home } from "./pages/home";
-import { AddQuestion } from "./pages/add-question";
-import { Practice } from "./pages/practice";
+import { Root } from "./pages/root.js";
+import { Home } from "./pages/home.js";
+import { AddQuestion } from "./pages/add-question.js";
+import { Practice } from "./pages/practice.js";
 
 export const router = createBrowserRouter([
   {

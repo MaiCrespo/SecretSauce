@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, RotateCcw, Shuffle, Building2, Briefcase } from "lucide-react";
-import { storage } from "../utils/storage";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
-import { Button } from "../components/ui/button";
-import { Badge } from "../components/ui/badge";
-import { StarRating } from "../components/star-rating";
+import { storage } from "../utils/storage.js";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card.js";
+import { Button } from "../components/ui/button.js";
+import { Badge } from "../components/ui/badge.js";
+import { StarRating } from "../components/star-rating.js";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../components/ui/select";
+} from "../components/ui/select.js";
 
 export function Practice() {
   const [questions, setQuestions] = useState([]);
@@ -45,7 +45,6 @@ export function Practice() {
       filtered = filtered.filter((q) => q.role === selectedRole);
     }
 
-    // Shuffle the questions
     const shuffled = filtered.sort(() => Math.random() - 0.5);
     setPracticeSet(shuffled);
     setCurrentIndex(0);
@@ -75,7 +74,6 @@ export function Practice() {
     setShowAnswer(false);
   };
 
-  // Get unique companies and roles
   const companies = Array.from(new Set(questions.map((q) => q.company).filter(Boolean)));
   const roles = Array.from(new Set(questions.map((q) => q.role)));
 
@@ -83,17 +81,13 @@ export function Practice() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      {/* Header */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">
-          Practice Mode
-        </h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">Practice Mode</h2>
         <p className="text-gray-600">
           Master your interview skills with real questions from BCIT students
         </p>
       </div>
 
-      {/* Filters */}
       <Card className="mb-6">
         <CardContent className="pt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -145,7 +139,6 @@ export function Practice() {
         </CardContent>
       </Card>
 
-      {/* Flashcard */}
       {practiceSet.length === 0 ? (
         <Card>
           <CardContent className="pt-6 text-center py-12">
@@ -156,12 +149,10 @@ export function Practice() {
         </Card>
       ) : (
         <div className="space-y-4">
-          {/* Progress */}
           <div className="text-center text-sm text-gray-600">
             Question {currentIndex + 1} of {practiceSet.length}
           </div>
 
-          {/* Card */}
           <Card className="min-h-[400px]">
             <CardHeader>
               <div className="flex flex-wrap items-center gap-2 mb-2">
@@ -176,9 +167,7 @@ export function Practice() {
                   {currentQuestion.role}
                 </Badge>
               </div>
-              <CardTitle className="text-xl">
-                {currentQuestion.question}
-              </CardTitle>
+              <CardTitle className="text-xl">{currentQuestion.question}</CardTitle>
               <div className="flex items-center gap-2 mt-2">
                 <span className="text-sm text-gray-600">Frequency:</span>
                 <StarRating rating={currentQuestion.frequency} readonly />
@@ -194,33 +183,20 @@ export function Practice() {
               ) : (
                 <div className="space-y-4">
                   <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                    <h4 className="font-medium text-sm text-blue-900 mb-2">
-                      Answer:
-                    </h4>
-                    <p className="text-sm text-blue-800 whitespace-pre-wrap">
-                      {currentQuestion.answer}
-                    </p>
+                    <h4 className="font-medium text-sm text-blue-900 mb-2">Answer:</h4>
+                    <p className="text-sm text-blue-800 whitespace-pre-wrap">{currentQuestion.answer}</p>
                   </div>
                   <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                    <h4 className="font-medium text-sm text-green-900 mb-2">
-                      Tips & Tricks:
-                    </h4>
-                    <p className="text-sm text-green-800 whitespace-pre-wrap">
-                      {currentQuestion.tips}
-                    </p>
+                    <h4 className="font-medium text-sm text-green-900 mb-2">Tips & Tricks:</h4>
+                    <p className="text-sm text-green-800 whitespace-pre-wrap">{currentQuestion.tips}</p>
                   </div>
                 </div>
               )}
             </CardContent>
           </Card>
 
-          {/* Navigation */}
           <div className="flex justify-between items-center">
-            <Button
-              onClick={handlePrevious}
-              disabled={currentIndex === 0}
-              variant="outline"
-            >
+            <Button onClick={handlePrevious} disabled={currentIndex === 0} variant="outline">
               <ChevronLeft className="size-4 mr-2" />
               Previous
             </Button>
@@ -234,9 +210,7 @@ export function Practice() {
                     setShowAnswer(false);
                   }}
                   className={`size-2 rounded-full transition-colors ${
-                    index === currentIndex
-                      ? "bg-blue-600"
-                      : "bg-gray-300 hover:bg-gray-400"
+                    index === currentIndex ? "bg-blue-600" : "bg-gray-300 hover:bg-gray-400"
                   }`}
                   aria-label={`Go to question ${index + 1}`}
                 />

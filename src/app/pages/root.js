@@ -1,13 +1,12 @@
 import { Outlet, Link, useLocation } from "react-router";
 import { Flame, Plus, BookOpen } from "lucide-react";
-import { Button } from "../components/ui/button";
+import { Button } from "../components/ui/button.js";
 
 export function Root() {
   const location = useLocation();
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* Header */}
       <header className="bg-white border-b sticky top-0 z-10 shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -52,12 +51,10 @@ export function Root() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="flex-1">
         <Outlet />
       </main>
 
-      {/* Footer */}
       <footer className="bg-white border-t mt-12">
         <div className="container mx-auto px-4 py-6 text-center text-sm text-gray-600">
           <p className="font-medium text-gray-900">SecretSauce</p>

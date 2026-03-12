@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { CheckCircle2 } from "lucide-react";
-import { storage } from "../utils/storage";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
-import { Input } from "../components/ui/input";
-import { Textarea } from "../components/ui/textarea";
-import { Button } from "../components/ui/button";
-import { Label } from "../components/ui/label";
-import { StarRating } from "../components/star-rating";
+import { storage } from "../utils/storage.js";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card.js";
+import { Input } from "../components/ui/input.js";
+import { Textarea } from "../components/ui/textarea.js";
+import { Button } from "../components/ui/button.js";
+import { Label } from "../components/ui/label.js";
+import { StarRating } from "../components/star-rating.js";
 import { toast } from "sonner";
 
 export function AddQuestion() {
@@ -42,7 +42,6 @@ export function AddQuestion() {
       icon: <CheckCircle2 className="size-4" />,
     });
 
-    // Reset form
     setFormData({
       company: "",
       role: "",
@@ -52,7 +51,6 @@ export function AddQuestion() {
       frequency: 3,
     });
 
-    // Navigate to home after a short delay
     setTimeout(() => {
       navigate("/");
     }, 1000);
@@ -61,12 +59,8 @@ export function AddQuestion() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-3xl">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">
-          Share an Interview
-        </h2>
-        <p className="text-gray-600">
-          Help your BCIT peers by sharing your interview experience
-        </p>
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">Share an Interview</h2>
+        <p className="text-gray-600">Help your BCIT peers by sharing your interview experience</p>
       </div>
 
       <Card>
@@ -86,9 +80,7 @@ export function AddQuestion() {
                 id="company"
                 placeholder="e.g., Google, Microsoft, Amazon..."
                 value={formData.company}
-                onChange={(e) =>
-                  setFormData({ ...formData, company: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
               />
             </div>
 
@@ -100,9 +92,7 @@ export function AddQuestion() {
                 id="role"
                 placeholder="e.g., Software Engineer, Product Manager..."
                 value={formData.role}
-                onChange={(e) =>
-                  setFormData({ ...formData, role: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                 required
               />
             </div>
@@ -115,9 +105,7 @@ export function AddQuestion() {
                 id="question"
                 placeholder="Enter the interview question you were asked..."
                 value={formData.question}
-                onChange={(e) =>
-                  setFormData({ ...formData, question: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, question: e.target.value })}
                 rows={3}
                 required
               />
@@ -130,13 +118,9 @@ export function AddQuestion() {
               <div className="flex items-center gap-3">
                 <StarRating
                   rating={formData.frequency}
-                  onRatingChange={(rating) =>
-                    setFormData({ ...formData, frequency: rating })
-                  }
+                  onRatingChange={(rating) => setFormData({ ...formData, frequency: rating })}
                 />
-                <span className="text-sm text-gray-600">
-                  How common is this question?
-                </span>
+                <span className="text-sm text-gray-600">How common is this question?</span>
               </div>
             </div>
 
@@ -148,9 +132,7 @@ export function AddQuestion() {
                 id="answer"
                 placeholder="Share your answer or a sample answer to this question..."
                 value={formData.answer}
-                onChange={(e) =>
-                  setFormData({ ...formData, answer: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, answer: e.target.value })}
                 rows={5}
                 required
               />
@@ -164,9 +146,7 @@ export function AddQuestion() {
                 id="tips"
                 placeholder="Share any tips, tricks, or advice for answering this question..."
                 value={formData.tips}
-                onChange={(e) =>
-                  setFormData({ ...formData, tips: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, tips: e.target.value })}
                 rows={4}
                 required
               />
@@ -176,11 +156,7 @@ export function AddQuestion() {
               <Button type="submit" className="flex-1">
                 Add Question
               </Button>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => navigate("/")}
-              >
+              <Button type="button" variant="outline" onClick={() => navigate("/")}>
                 Cancel
               </Button>
             </div>
